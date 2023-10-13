@@ -1,0 +1,39 @@
+Tic Tac Toe
+
+Logic Steps
+
+- Welcome page 
+- Start a new session (best out of 7)
+
+- User chooses gametype: vs Computer / vs Player2
+  - if vs Computer:
+    - Player1 inputs name and chooses token (X or O)
+
+  - if vs Player2:
+    - Player1 inputs name and chooses token (X or O)
+    - Player2 inputs name and chooses token (X or O)
+
+- Start new game
+- Empty board
+- Define activePlayer (who is placing the token) 
+  - do while (!gameWinner or !emptySpaces)
+    - if (emptySpaces)
+      
+      - if (!gameWinner)
+        - activePlayer place token
+      - Display game Outcome
+    - Display "draw"
+  - Add score to session
+
+- Check sessionScore for sessionWinner
+- if no winner
+  - Display current score
+  - Start new game
+- if winner
+  - Display session winner
+  - New session?
+  - if newSession
+    - start new session
+
+
+
