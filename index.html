@@ -15,27 +15,116 @@
 <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100;300;400;500;600;700;800&family=Red+Hat+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  
   <div id="landing-container" class="landing-container">
-    <section>
-      <header>
-        <div class="header">
-          <div class="title"><span>Tic Tac Toe</span></div>
-          <div class="img-container">
-
-          </div>
-          <div class="sub-text">
-            <span>Play a best out of 7 match</span><br>
-            <span>Select a game type:</span>
-          </div>
-          <div class="game-type">
-            <button id="computer" class="btn-game-type">Play vs Computer</button>
-            <button id="player2" class="btn-game-type">Play vs Player 2</button>
-          </div>
-        </div>
-      </header>
-    </section>
+    <div class="img-container">
+      <span class="logo tic" id="tic">Tic</span>
+      <span class="logo tac" id="tac">Tac</span>
+      <span class="logo toe" id="toe">Toe</span>
+      <div class="lines-hor">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <div class="lines-ver">
+        <div class="line-ver"></div>
+        <div class="line-ver"></div>
+      </div>
+    </div>
+    <div class="sub-text">
+      <span>Play a best out of 7 match</span><br>
+      <span>Select a game type:</span>
+    </div>
+    <div class="game-type">
+      <button id="computer" class="btn-game-type">Play vs Computer</button>
+      <button id="player2" class="btn-game-type">Play vs Player 2</button>
+    </div>
   </div>
+
+  <div class="player2-setup-container" id="player2-setup-container">
+    <div class="player">
+      <span class="title-player" >Player 1</span>
+      <label for="player-name"></label><br>
+      <input type="text" name="player1" id="" class="player-input" placeholder="name..." autofocus>
+      <span class="sub-text-player">Select your token</span>
+      <div class="tokens-container">
+        <button class="btn-token">
+          <ion-icon name="skull"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="diamond"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="rose"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="player">
+      <span class="title-player" >Player 2</span>
+      <label for="player-name"></label><br>
+      <input type="text" name="player1" id="" class="player-input" placeholder="name..." autofocus>
+      <span class="sub-text-player">Select your token</span>
+      <div class="tokens-container">
+        <button class="btn-token">
+          <ion-icon name="skull"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="diamond"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="rose"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="btn-start-container">
+      <button class="btn-start" id="btn-start-game-player">Start</button>
+    </div>
+  </div>
+
+  <div class="computer-setup-container" id="computer-setup-container">
+    <div class="player">
+      <span class="title-player" >Player 1</span>
+      <label for="player-name"></label><br>
+      <input type="text" name="player1" id="" class="player-input" placeholder="name..." autofocus>
+      <span class="sub-text-player">Select your token</span>
+      <div class="tokens-container">
+        <button class="btn-token">
+          <ion-icon name="skull"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="diamond"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="rose"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="player">
+      <span class="title-player" >Computer</span>
+      <span class="sub-text-player">Select token</span>
+      <div class="tokens-container">
+        <button class="btn-token">
+          <ion-icon name="skull"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="diamond"></ion-icon>
+        </button>
+        <button class="btn-token">
+          <ion-icon name="rose"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="btn-start-container">
+      <button class="btn-start" id="btn-start-game-computer">Start</button>
+    </div>
+  </div>
+
+  <div class="game-container" id="game-container">
+    <span>Game Page</span>
+  </div>
+
   <script src="script.js"></script>
   <script src="game.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

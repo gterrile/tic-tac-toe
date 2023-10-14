@@ -3,8 +3,18 @@
 ////////////////////////////////////////////////////
 // Global Variables
 ////////////////////////////////////////////////////
-
-
+const computer = document.getElementById('computer');
+const player2 = document.getElementById('player2');
+const gameTypeBtnList = document.querySelectorAll('.btn-game-type');
+const landingContainer = document.getElementById('landing-container');
+const vsPlayerSetup = document.getElementById('player2-setup-container');
+const vsComputer = document.getElementById('computer-setup-container');
+const btnStartPlayerGame = document.getElementById('btn-start-game-player');
+const btnStartComputerGame = document.getElementById('btn-start-game-computer');
+const gameContainerSetup = document.getElementById('game-container');
+const tic = document.getElementById('tic');
+const tac = document.getElementById('tac');
+const toe = document.getElementById('toe');
 
 ////////////////////////////////////////////////////
 // Gameboard:
@@ -27,7 +37,7 @@ const gameBoard = (function() {
   }
 })();
 
-console.table(gameBoard.display())
+// console.table(gameBoard.display())
 
 ////////////////////////////////////////////////////
 // Player (name, token)
@@ -64,7 +74,29 @@ function createPlayer(name, token) {
 // Create a best out of 7 games session
 function newSession() {
   console.log('Start New Game Session (best out of 7');
-  console.log('Choose game type: vs Computer / vs Player2')
+  console.log('Select Game Type')
+
+  player2.addEventListener('click', function(e) {
+    console.log('Selected: ', player2.id)
+    session.setType(player2.id);
+    clearPage();
+    loadvsPlayerSetup()
+    btnStartPlayerGame.addEventListener('click', function() {
+      clearPage();
+      loadGamePage();
+    })
+  })
+
+  computer.addEventListener('click', function(e) {
+    console.log('Selected: ', computer.id)
+    session.setType(computer.id);
+    clearPage();
+    loadvsComputerSetup()
+    btnStartComputerGame.addEventListener('click', function() {
+      clearPage();
+      loadGamePage();
+    })
+  })
 
   let gameCount = 0;
   const increaseGameCount = () => gameCount++;
@@ -73,6 +105,7 @@ function newSession() {
   // User will have to select the game type and
   // oponent will be 'computer' or 'player2'
   let type = '';
+  
   const setType = function(oponent) {
     return type = oponent;
   }
@@ -125,6 +158,47 @@ function displayScore() {
 
 }
 
+function clearPage() {
+  landingContainer.setAttribute('style', 'display: none');
+  vsPlayerSetup.setAttribute('style', 'display: none');
+  vsComputer.setAttribute('style', 'display: none');
+}
+
+function loadvsPlayerSetup() {
+  vsPlayerSetup.setAttribute('style', 'display: grid');
+}
+
+function loadvsComputerSetup() {
+  vsComputer.setAttribute('style', 'display: grid');
+}
+
+function loadGamePage() {
+  gameContainerSetup.setAttribute('style', 'display: grid');
+}
+
+
+function moveTitle() {
+  setTimeout(function() {
+    const ticPos = Math.floor(Math.random() * 3) + 1;
+    const tacPos = Math.floor(Math.random() * 2) + 1;
+    const toePos = Math.floor(Math.random() * 3) + 1;
+
+    tic.setAttribute('style', `grid-row: ${ticPos}`);
+    tac.setAttribute('style', `grid-row: ${tacPos}`);
+    toe.setAttribute('style', `grid-row: ${toePos}`);
+    if ((ticPos == 1 && tacPos == 2 && toePos == 3) || 
+    (ticPos == 3 && tacPos == 2 && toePos == 1) || (
+      ticPos == tacPos && ticPos == toePos)) {
+      tic.setAttribute('style', `color: #5272F2; font-size: 2.3rem`);
+      tac.setAttribute('style', `color: #5272F2; font-size: 2.3rem`);
+      toe.setAttribute('style', `color: #5272F2; font-size: 2.3rem`);
+    }
+
+    moveTitle();
+  }, 500)
+}
+
+
 ////////////////////////////////////////////////////
 // computerPlay()
 // Create a function so the computer picks where to play.
@@ -133,7 +207,21 @@ function displayScore() {
 ////////////////////////////////////////////////////
 // GAME EXECUTION //
 
-const game = newSession();
+const session = newSession();
+vsPlayerSetup.setAttribute('style', 'display: none');
+vsComputer.setAttribute('style', 'display: none');
+gameContainerSetup.setAttribute('style', 'display: none');
+const lala = moveTitle(500);
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -157,5 +245,4 @@ const game = newSession();
 
 // game.setSessionScore(3, 2);
 // console.log(game.getSessionScore());
-
 
