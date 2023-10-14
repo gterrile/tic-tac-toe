@@ -12,9 +12,22 @@ const vsComputer = document.getElementById('computer-setup-container');
 const btnStartPlayerGame = document.getElementById('btn-start-game-player');
 const btnStartComputerGame = document.getElementById('btn-start-game-computer');
 const gameContainerSetup = document.getElementById('game-container');
+
 const tic = document.getElementById('tic');
 const tac = document.getElementById('tac');
 const toe = document.getElementById('toe');
+
+const inputPlayer1 = document.getElementById('input-player-1');
+const inputPlayer2 = document.getElementById('input-player-2');
+const tknP1op1 = document.getElementById('token-p1-1');
+const tknP1op2 = document.getElementById('token-p1-2');
+const tknP1op3 = document.getElementById('token-p1-3');
+const tknP2op1 = document.getElementById('token-p2-1');
+const tknP2op2 = document.getElementById('token-p2-2');
+const tknP2op3 = document.getElementById('token-p2-3');
+
+const btnTokenListPlayer1 = document.querySelectorAll('.token-player1');
+const btnTokenListPlayer2 = document.querySelectorAll('.token-player2');
 
 ////////////////////////////////////////////////////
 // Gameboard:
@@ -39,14 +52,71 @@ const gameBoard = (function() {
 
 // console.table(gameBoard.display())
 
+
+
 ////////////////////////////////////////////////////
 // Player (name, token)
 // Create function to allow player to mark the board
 // Create function to calculate the winner 
 ////////////////////////////////////////////////////
 
-function createPlayer(name, token) {
+function createPlayers() {
+  
+  console.log('Input players name and choose a token');
+  
+  let player1Name = '';
+  let player2Name = '';
+  
+  let player1Token = '';
+  let player2Token = '';
+
+  btnTokenListPlayer1.forEach(item => {
+    item.addEventListener('click', function() {
+      console.log('Selected', item.id)
+
+    })
+  })
+
+  btnTokenListPlayer2.forEach(item => {
+    item.addEventListener('click', function() {
+      console.log(item.id)
+    })
+  })
+
+  inputPlayer1.addEventListener('input', function() {
+    setName(1, inputPlayer1.value)
+    console.log({player1Name});
+  })
+
+  inputPlayer2.addEventListener('input', function() {
+    setName(2, inputPlayer2.value)
+    console.log({player2Name});
+  })
+
+  btnStartPlayerGame.addEventListener('click', function() {
+    clearPage();
+    loadGamePage();
+  })
+
   let score = 0;
+
+  const setName = function(player, name) {
+    if (player == 1) {
+      return player1Name = name;
+    }
+    if (player == 2) {
+      return player2Name = name
+    }
+  }
+
+  const getName = function(player) {
+    if (player == 1) {
+      return player1Name
+    }
+    if (player == 2) {
+      return player2Name
+    }
+  }
 
   const setScore = function(a) {
     return score = a;
@@ -55,7 +125,7 @@ function createPlayer(name, token) {
   const getScore = () => score;
 
   return {
-    name, token, setScore, getScore
+    setName,  getName, setScore, getScore
   }
 }
 
@@ -76,27 +146,29 @@ function newSession() {
   console.log('Start New Game Session (best out of 7');
   console.log('Select Game Type')
 
+  let players = {
+    player1: '',
+    player2: ''
+  }
+
   player2.addEventListener('click', function(e) {
     console.log('Selected: ', player2.id)
     session.setType(player2.id);
     clearPage();
     loadvsPlayerSetup()
-    btnStartPlayerGame.addEventListener('click', function() {
-      clearPage();
-      loadGamePage();
-    })
+    players = createPlayers();
   })
 
-  computer.addEventListener('click', function(e) {
-    console.log('Selected: ', computer.id)
-    session.setType(computer.id);
-    clearPage();
-    loadvsComputerSetup()
-    btnStartComputerGame.addEventListener('click', function() {
-      clearPage();
-      loadGamePage();
-    })
-  })
+  // computer.addEventListener('click', function(e) {
+  //   console.log('Selected: ', computer.id)
+  //   session.setType(computer.id);
+  //   clearPage();
+  //   loadvsComputerSetup()
+  //   btnStartComputerGame.addEventListener('click', function() {
+  //     clearPage();
+  //     loadGamePage();
+  //   })
+  // })
 
   let gameCount = 0;
   const increaseGameCount = () => gameCount++;
@@ -125,13 +197,17 @@ function newSession() {
 
   const getActivePlayer = () => (gameCount % 2 == 0) ? 2 : 1;
 
+
+  const getPlayers = () => players;
+
   return { setType, 
     getType, 
     setSessionScore, 
     getSessionScore, 
     increaseGameCount, 
     getGameCount,
-    getActivePlayer
+    getActivePlayer,
+    getPlayers
   }
 }
 
@@ -208,10 +284,12 @@ function moveTitle() {
 // GAME EXECUTION //
 
 const session = newSession();
+
 vsPlayerSetup.setAttribute('style', 'display: none');
 vsComputer.setAttribute('style', 'display: none');
 gameContainerSetup.setAttribute('style', 'display: none');
-const lala = moveTitle(500);
+// const lala = moveTitle(500);
+
 
 
 
