@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="reset.css">
 </head>
 <body>
+  <div class="title"><span>Tic Tac Toe</span></div>
+  <div class="subtitle"><span>Best out of 7 game</span></div>
   <div class="boardContainer" id="boardContainer">
+    <span class="counter" id="counter"></span>
     <div class="boardCell" id="1"><span class="textCell"></span></div>
     <div class="boardCell" id="2"><span class="textCell"></span></div>
     <div class="boardCell" id="3"><span class="textCell"></span></div>
@@ -20,7 +23,14 @@
     <div class="boardCell" id="8"><span class="textCell"></span></div>
     <div class="boardCell" id="9"><span class="textCell"></span></div>
   </div>
-  <button id="startGame">Start</button>
+  <div class="score-container">
+    <span class="score">Score</span>
+    <span class="player1">Player 1</span>
+    <span class="player2">Player 2</span>
+    <span id="player1-score"></span>
+    <span id="player2-score"></span>
+  </div>
+  <!-- <button id="newGame">New Game</button> -->
   <script src="game.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

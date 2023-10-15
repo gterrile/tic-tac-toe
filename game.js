@@ -1,27 +1,19 @@
-// function gameBoard() {
-//   const boardContainer = document.getElementById('boardContainer');
-  
-//   // Create board cells and append them to container
-//   for (i = 1; i <= 9; i++) {
-//     const cell = document.createElement('div');
-//     cell.classList.add('boardCell');
-//     cell.setAttribute('id', `${i}`)
-//     const textCell = document.createElement('span');
-//     textCell.classList.add('textCell');
-//     cell.appendChild(textCell);
-//     boardContainer.appendChild(cell);
-//   }
-// }
-
 function gameFlow() {
-  // Create Board
-  //gameBoard();
 
+  
   // Define variables
+  const player1score = document.getElementById('player1-score');
+  const player2score = document.getElementById('player2-score');
+  player1score.textContent = '0';
+  player2score.textContent = '0';
   let board = ['','','','','','','','','',''];
   const cells = document.querySelectorAll('.boardCell');
   let isThereAWinner = false;
-  const startGame = document.getElementById('startGame');
+  const newGame = document.getElementById('newGame');
+  const counter = document.getElementById('counter');
+  const boardContainer = document.getElementById('boardContainer');
+  const textCell = document.querySelectorAll('.textCell');
+
   let score = {
     player1: 0,
     player2: 0
@@ -29,17 +21,15 @@ function gameFlow() {
 
   console.log('New Game Started');
 
-
-
-  // Restart game
-  startGame.addEventListener('click', function() {
-    // Reset board
-    board = ['','','','','','','','','',''];
-    cells.forEach(cell => {
-    cell.firstChild.textContent = '';
-    isThereAWinner = false;
-  })
-  });
+  // // New game
+  // newGame.addEventListener('click', function() {
+  //   // Reset board
+  //   board = ['','','','','','','','','',''];
+  //   cells.forEach(cell => {
+  //   cell.firstChild.textContent = '';
+  //   isThereAWinner = false;
+  //   })
+  // });
 
   // Event Listener for Players Token
   cells.forEach(cell => {
@@ -99,16 +89,102 @@ function gameFlow() {
     }
   }
 
+  function autoRestart() {
+    counter.setAttribute('style', 'display: block');
+    setTimeout(function(){
+      counter.textContent = '3'
+    },50)
+
+    setTimeout(function(){
+      counter.textContent = '2'
+    },1050)
+
+    setTimeout(function(){
+      counter.textContent = '1'
+    },2050)
+
+    // Auto re start game
+    setTimeout(function(){
+      // Reset board
+      board = ['','','','','','','','','',''];
+      cells.forEach(cell => {
+      cell.firstChild.textContent = '';
+      isThereAWinner = false;
+      counter.textContent = '';
+      counter.setAttribute('style', 'display: none');
+      })  
+    }, 3050)
+  }
+
   function weHaveAWinner() {
     console.log('Winner is Player', `${activePlayer}`);
+    
     if (activePlayer == 1) {
-      score.player1++
+      score.player1++;
+      player1score.textContent = score.player1;
+      // Check if is the winner out of 7
+      if (score.player1 == 2) {
+        textCell.forEach(cell => {
+          cell.setAttribute('style', 'color: rgb(230, 230, 230)')
+        })
+        counter.setAttribute('style', 'display: block; font-size: 4.5rem; font-weight: 700; text-align: center');
+        counter.textContent = 'Winner Player 1';
+        setTimeout(function(){
+          resetAfterWinner()
+          textCell.forEach(cell => {
+            cell.setAttribute('style', 'color: rgb(54, 54, 54)')
+          })
+          counter.textContent = '';
+          counter.setAttribute('style', 'display: none');
+        }, 4000)
+      }
+      // Sets for a new game
+      else {
+        autoRestart();
+      }
     }
-    else {
-      score.player2++
+    
+    if (activePlayer == 2) {
+      score.player2++;
+      player2score.textContent = score.player2;
+      // Check if is the winner out of 7
+      if (score.player2 == 2) {
+        textCell.forEach(cell => {
+          cell.setAttribute('style', 'color: rgb(230, 230, 230)')
+        })
+        counter.setAttribute('style', 'display: block; font-size: 4.5rem; font-weight: 700; text-align: center');
+        counter.textContent = 'Winner Player 2';
+        setTimeout(function(){
+          resetAfterWinner()
+          textCell.forEach(cell => {
+            cell.setAttribute('style', 'color: rgb(54, 54, 54)')
+          })
+          counter.textContent = '';
+          counter.setAttribute('style', 'display: none');
+        }, 4000)
+      }
+      // Sets for a new game
+      else {
+        autoRestart();
+      }
     }
-    console.log('Current Score', score)
+
     isThereAWinner = true;
+    
+    function resetAfterWinner() {
+      console.log('Game is over, winner is Player', `${activePlayer}`);
+      // Reset board
+      board = ['','','','','','','','','',''];
+      cells.forEach(cell => {
+      cell.firstChild.textContent = '';
+      isThereAWinner = false;
+      score.player1 = 0;
+      score.player2 = 0;
+      player1score.textContent = '0';
+      player2score.textContent = '0';
+      })
+      return
+    }
   }
 }
 
