@@ -1,0 +1,231 @@
+body {
+  font-family: 'Martian Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ------------ */
+/* landing page */
+/* ------------ */
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.img-container {
+  height: 250px;
+  width: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 40px;
+}
+
+.lines-hor {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.lines-ver {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+}
+
+.line {
+  position: relative;
+  height: 2px;
+  width: 250px;
+  border: 2px solid black;
+}
+
+.line-ver {
+  position: relative;
+  height: 250px;
+  width: 2px;
+  border: 2px solid black;
+}
+
+.logo {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.tac {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.toe {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.game-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.btn-game-type {
+  height: min-content;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px;
+  border: 4px solid black;
+  font-weight: 400;
+  color: rgb(93, 93, 93);
+  transition: 0.3s;
+}
+
+.btn-game-type:hover {
+  border: 5px solid #5272F2;
+  cursor: pointer;
+  color: rgb(93, 93, 93);
+  font-size: 1.6rem;
+  transition: 0.3s;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 10px 10px;
+  letter-spacing: -3px;
+}
+
+.sub-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 30px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ------------- */
+/* player2 setup */
+/* ------------- */
+
+.player2-setup-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 0.4fr;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+}
+
+.player {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.player-input {
+  height: 3rem;
+  border: 4px solid black;
+  padding-left: 0.5rem;
+}
+
+.title-player {
+  font-size: 2rem;
+  color: rgb(93, 93, 93);
+}
+
+.player-input:focus {
+  border: 5px solid #5272F2;
+  border-radius: 0px;
+  outline: none;
+}
+
+.sub-text-player {
+  font-size: 1rem;
+  margin: 20px 0;
+  color: rgb(93, 93, 93);
+}
+
+.tokens-container {
+  display: flex;
+  height: 100px;
+  width: 70%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-token {
+  height: min-content;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 8px;
+  border: 4px solid black;
+  background-color: rgb(240, 240, 240);
+}
+
+.btn-token:hover {
+  border: 5px solid #5272F2;
+  cursor: pointer;
+}
+
+ion-icon {
+  font-size: 58px;
+  color: rgb(93, 93, 93);
+}
+
+ion-icon:hover {
+  font-size: 62px;
+  color: rgb(93, 93, 93);
+}
+
+.btn-start-container {
+ display: flex;
+ justify-content: center;
+}
+
+.btn-start {
+  padding: 8px;
+  border: 4px solid black;
+  font-size: 2rem;
+  color: rgb(93, 93, 93);
+}
+
+.btn-start:hover {
+  border: 5px solid #5272F2;
+  cursor: pointer;
+  font-size: 2.1rem;
+  color: rgb(93, 93, 93);
+}
+
+/* -------------- */
+/* computer setup */
+/* -------------- */
+
+.computer-setup-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 0.4fr;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+}
