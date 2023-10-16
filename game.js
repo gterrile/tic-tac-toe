@@ -135,7 +135,7 @@ function gameFlow() {
       score.player1++;
       player1score.textContent = score.player1;
       // Check if is the winner out of 7
-      if (score.player1 == 2) {
+      if (score.player1 == 4) {
         textCell.forEach(cell => {
           cell.setAttribute('style', 'color: rgb(55, 55, 55)')
         })
@@ -164,7 +164,7 @@ function gameFlow() {
       score.player2++;
       player2score.textContent = score.player2;
       // Check if is the winner out of 7
-      if (score.player2 == 2) {
+      if (score.player2 == 4) {
         textCell.forEach(cell => {
           cell.setAttribute('style', 'color: rgb(55, 55, 55)')
         })
