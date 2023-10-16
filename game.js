@@ -63,6 +63,7 @@ function gameFlow() {
   }
 
   function checkWinner() {
+
     if (board[1] != '' && board[1] == board[2] && board[2] == board[3]) {
       weHaveAWinner()
     }
@@ -87,19 +88,30 @@ function gameFlow() {
     if (board[3] != '' && board[3] == board[5] && board[5] == board[7]) {
       weHaveAWinner()
     }
+
+    if (!board.slice(1).includes('')) {
+      console.log('Tie game');
+      autoRestart();
+      return;
+    }
+
   }
 
   function autoRestart() {
+    const audio = document.getElementById('audio-counter');
     counter.setAttribute('style', 'display: block');
     setTimeout(function(){
-      counter.textContent = '3'
+      audio.play();
+      counter.textContent = '3';
     },50)
 
     setTimeout(function(){
+      audio.play();
       counter.textContent = '2'
     },1050)
 
     setTimeout(function(){
+      audio.play();
       counter.textContent = '1'
     },2050)
 
@@ -118,25 +130,29 @@ function gameFlow() {
 
   function weHaveAWinner() {
     console.log('Winner is Player', `${activePlayer}`);
-    
+    const audioWin = document.getElementById('audio-win');
     if (activePlayer == 1) {
       score.player1++;
       player1score.textContent = score.player1;
       // Check if is the winner out of 7
       if (score.player1 == 2) {
         textCell.forEach(cell => {
-          cell.setAttribute('style', 'color: rgb(230, 230, 230)')
+          cell.setAttribute('style', 'color: rgb(55, 55, 55)')
         })
-        counter.setAttribute('style', 'display: block; font-size: 4.5rem; font-weight: 700; text-align: center');
+        audioWin.currentTime = 3;
+        audioWin.play();
+        counter.setAttribute('style', 'display: block; font-size: 5.5rem; font-weight: 900; text-align: center');
         counter.textContent = 'Winner Player 1';
         setTimeout(function(){
           resetAfterWinner()
           textCell.forEach(cell => {
-            cell.setAttribute('style', 'color: rgb(54, 54, 54)')
+            cell.setAttribute('style', 'color: rgb(224, 224, 224)')
           })
+          audioWin.pause()
           counter.textContent = '';
           counter.setAttribute('style', 'display: none');
-        }, 4000)
+        }, 5000)
+  
       }
       // Sets for a new game
       else {
@@ -150,14 +166,14 @@ function gameFlow() {
       // Check if is the winner out of 7
       if (score.player2 == 2) {
         textCell.forEach(cell => {
-          cell.setAttribute('style', 'color: rgb(230, 230, 230)')
+          cell.setAttribute('style', 'color: rgb(55, 55, 55)')
         })
-        counter.setAttribute('style', 'display: block; font-size: 4.5rem; font-weight: 700; text-align: center');
+        counter.setAttribute('style', 'display: block; font-size: 5.5rem; font-weight: 900; text-align: center');
         counter.textContent = 'Winner Player 2';
         setTimeout(function(){
           resetAfterWinner()
           textCell.forEach(cell => {
-            cell.setAttribute('style', 'color: rgb(54, 54, 54)')
+            cell.setAttribute('style', 'color: rgb(224, 224, 224)')
           })
           counter.textContent = '';
           counter.setAttribute('style', 'display: none');
